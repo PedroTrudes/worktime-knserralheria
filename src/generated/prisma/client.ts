@@ -46,3 +46,8 @@ export { Prisma }
  * 
  */
 export type User = Prisma.UserModel
+/**
+ * Model TimeEntry
+ * 
+ */
+export type TimeEntry = Prisma.TimeEntryModel

@@ -397,7 +397,8 @@ type FieldRefInputType<Model, FieldType> = Model extends never ? never : FieldRe
 
 
 export const ModelName = {
-  User: 'User'
+  User: 'User',
+  TimeEntry: 'TimeEntry'
 } as const
 
 export type ModelName = (typeof ModelName)[keyof typeof ModelName]
@@ -413,7 +414,7 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
     omit: GlobalOmitOptions
   }
   meta: {
-    modelProps: "user"
+    modelProps: "user" | "timeEntry"
     txIsolationLevel: TransactionIsolationLevel
   }
   model: {
@@ -491,6 +492,80 @@ export type TypeMap<ExtArgs extends runtime.Types.Extensions.InternalArgs = runt
         }
       }
     }
+    TimeEntry: {
+      payload: Prisma.$TimeEntryPayload<ExtArgs>
+      fields: Prisma.TimeEntryFieldRefs
+      operations: {
+        findUnique: {
+          args: Prisma.TimeEntryFindUniqueArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload> | null
+        }
+        findUniqueOrThrow: {
+          args: Prisma.TimeEntryFindUniqueOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+        }
+        findFirst: {
+          args: Prisma.TimeEntryFindFirstArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload> | null
+        }
+        findFirstOrThrow: {
+          args: Prisma.TimeEntryFindFirstOrThrowArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+        }
+        findMany: {
+          args: Prisma.TimeEntryFindManyArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload>[]
+        }
+        create: {
+          args: Prisma.TimeEntryCreateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+        }
+        createMany: {
+          args: Prisma.TimeEntryCreateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        createManyAndReturn: {
+          args: Prisma.TimeEntryCreateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload>[]
+        }
+        delete: {
+          args: Prisma.TimeEntryDeleteArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+        }
+        update: {
+          args: Prisma.TimeEntryUpdateArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+        }
+        deleteMany: {
+          args: Prisma.TimeEntryDeleteManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateMany: {
+          args: Prisma.TimeEntryUpdateManyArgs<ExtArgs>
+          result: BatchPayload
+        }
+        updateManyAndReturn: {
+          args: Prisma.TimeEntryUpdateManyAndReturnArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload>[]
+        }
+        upsert: {
+          args: Prisma.TimeEntryUpsertArgs<ExtArgs>
+          result: runtime.Types.Utils.PayloadToResult<Prisma.$TimeEntryPayload>
+        }
+        aggregate: {
+          args: Prisma.TimeEntryAggregateArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.AggregateTimeEntry>
+        }
+        groupBy: {
+          args: Prisma.TimeEntryGroupByArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TimeEntryGroupByOutputType>[]
+        }
+        count: {
+          args: Prisma.TimeEntryCountArgs<ExtArgs>
+          result: runtime.Types.Utils.Optional<Prisma.TimeEntryCountAggregateOutputType> | number
+        }
+      }
+    }
   }
 } & {
   other: {
@@ -539,6 +614,16 @@ export const UserScalarFieldEnum = {
 } as const
 
 export type UserScalarFieldEnum = (typeof UserScalarFieldEnum)[keyof typeof UserScalarFieldEnum]
+
+
+export const TimeEntryScalarFieldEnum = {
+  id: 'id',
+  type: 'type',
+  timestamp: 'timestamp',
+  userId: 'userId'
+} as const
+
+export type TimeEntryScalarFieldEnum = (typeof TimeEntryScalarFieldEnum)[keyof typeof TimeEntryScalarFieldEnum]
 
 
 export const SortOrder = {
@@ -602,6 +687,34 @@ export type EnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaM
  * Reference to a field of type 'UserRole[]'
  */
 export type ListEnumUserRoleFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'UserRole[]'>
+    
+
+
+/**
+ * Reference to a field of type 'TimeEntryType'
+ */
+export type EnumTimeEntryTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TimeEntryType'>
+    
+
+
+/**
+ * Reference to a field of type 'TimeEntryType[]'
+ */
+export type ListEnumTimeEntryTypeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'TimeEntryType[]'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime'
+ */
+export type DateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime'>
+    
+
+
+/**
+ * Reference to a field of type 'DateTime[]'
+ */
+export type ListDateTimeFieldRefInput<$PrismaModel> = FieldRefInputType<$PrismaModel, 'DateTime[]'>
     
 
 
@@ -770,6 +883,7 @@ export interface PrismaClientOptionsWithAdapter extends PrismaClientBaseOptions 
 export type PrismaClientOptions = PrismaClientOptionsWithAccelerateUrl | PrismaClientOptionsWithAdapter
 export type GlobalOmitConfig = {
   user?: Prisma.UserOmit
+  timeEntry?: Prisma.TimeEntryOmit
 }
 
 /* Types for Logging */

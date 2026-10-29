@@ -15,3 +15,11 @@ export const UserRole = {
 } as const
 
 export type UserRole = (typeof UserRole)[keyof typeof UserRole]
+
+
+export const TimeEntryType = {
+  ENTRY: 'ENTRY',
+  EXIT: 'EXIT'
+} as const
+
+export type TimeEntryType = (typeof TimeEntryType)[keyof typeof TimeEntryType]

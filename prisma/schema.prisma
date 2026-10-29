@@ -17,10 +17,26 @@ enum UserRole {
   ADMIN
 }
 
+enum TimeEntryType {
+  ENTRY
+  EXIT
+}
+
 model User {
   id       Int      @id @default(autoincrement())
   username String   @unique
   name     String
   password String
   role     UserRole @default(EMPLOYEE)
+
+  timeEntries TimeEntry[]
+}
+
+model TimeEntry {
+  id        Int           @id @default(autoincrement())
+  type      TimeEntryType
+  timestamp DateTime      @default(now())
+
+  userId Int
+  user   User @relation(fields: [userId], references: [id])
 }
