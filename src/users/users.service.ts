@@ -8,19 +8,6 @@ export class UsersService {
 
     constructor(private readonly prisma: PrismaService){}
     
-    private readonly users = [
-            {
-                id: 1,
-                name: "pedro",
-                email: "pedro.jtrudes@gmail.com"
-            },
-            {
-                id: 2,
-                name: "bima",
-                email: "bimael@gmail.com"
-            }
-        ]
-
     findAll(){
         return this.prisma.user.findMany();
     }
