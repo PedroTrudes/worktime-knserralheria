@@ -1,6 +1,7 @@
-import { Injectable, NotFoundException } from '@nestjs/common';
+import { BadRequestException, Injectable, NotFoundException } from '@nestjs/common';
 import { PrismaService } from '../prisma/prisma.service.js';
 import { TimeEntryType } from '../generated/prisma/enums.js';
+import { start } from 'repl';
 
 @Injectable()
 export class TimeEntriesService {
@@ -55,4 +56,28 @@ export class TimeEntriesService {
 
         return listUserEntry
     }
+
+    async findByMonth(initMonth: number, year: number){
+        const startDate = new Date(Date.UTC(year, initMonth -1, 1));
+        const endDate = new Date(Date.UTC(year, initMonth, 1));
+
+        if(initMonth > 12 || initMonth < 1 || !Number.isInteger(initMonth)){
+            throw new BadRequestException("Insira um mês valido")
+        }
+        if(!Number.isInteger(year)){
+            throw new BadRequestException("Insira um ano valido")
+        }
+
+        const timeByMonth = await this.prisma.timeEntry.findMany({
+            where: {
+                timestamp: {
+                    gte: startDate,
+                    lt: endDate
+                },
+            }
+        }) 
+
+        return timeByMonth;
+    }
+
 }

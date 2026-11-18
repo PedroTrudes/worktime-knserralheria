@@ -1,4 +1,4 @@
-import { Body, Controller, Param, ParseIntPipe, Post, Get } from '@nestjs/common';
+import { Body, Controller, Param, ParseIntPipe, Post, Get, Query, Search } from '@nestjs/common';
 import { TimeEntriesService } from './time-entries.service.js';
 import { ClockTimeEntryDto } from './dto/clock-time-entry.dto.js';
 
@@ -15,16 +15,13 @@ export class TimeEntriesController {
     findById(@Param('userId', ParseIntPipe) userId : number){
         return this.timeEntriesService.findAllByUser(userId);
     }
-    /* 
-    @Get()
-    findAll(){
-    }
-    @Get(":id")
-    findById(@Param('id', ParseIntPipe) id : Number){
-        return
-    }
-    
-    */
 
+    @Get('')
+    findByMonth(
+        @Query('initMonth', ParseIntPipe) initMonth: number,
+        @Query('year', ParseIntPipe) year: number
+){
+        return this.timeEntriesService.findByMonth(initMonth, year);
+    }
 
 }
